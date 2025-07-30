@@ -8,7 +8,7 @@ The Chatbot Service is a Spring Boot application that provides a chatbot interfa
 
 ## Architecture 
 ### Diagram
-![Architecture Diagram](Chatbot service-Architecture Diagram.png)
+![Architecture Diagram](architectureDiagram.png)
 
 ### High-Level Architecture - Core Components
 1. API Gateway Layer: Request routing and API management
