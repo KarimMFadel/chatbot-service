@@ -1,0 +1,14 @@
+aws:
+  dynamodb:
+    endpoint: ${CB_AWS_DYNAMODB_ENDPOINT}
+  access-key: ${CB_AWS_ACCESS_KEY_ID}
+  secret-key: ${CB_AWS_SECRET_ACCESS_KEY}
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+      base-path: /
+

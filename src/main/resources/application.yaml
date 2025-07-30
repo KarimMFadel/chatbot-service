@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: chatbot-service
+  profiles:
+    active: ${CB_PROFILE:dev}
+
+  ai:
+    anthropic:
+      api-key: ${CB_CLAUDE_API_KEY}
+
+aws:
+  region: ${CB_AWS_DYNAMODB_REGION}
