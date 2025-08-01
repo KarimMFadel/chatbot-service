@@ -8,7 +8,6 @@ import com.tornado.chatbot.models.ChatMessage;
 import com.tornado.chatbot.repositories.ChatMessageRepository;
 import com.tornado.chatbot.utils.DateUtils;
 
-import org.springframework.ai.anthropic.AnthropicChatModel;
 import org.springframework.stereotype.Service;
 
 import lombok.extern.slf4j.Slf4j;

@@ -30,7 +30,7 @@ The Chatbot Service is a Spring Boot application that provides a chatbot interfa
     * Storing chat sessions and messages
     * Scalable, low-latency
 5. S3
-    * Optional for storing (Attached Image, Documents)
+    * Optional for storing (Attached Image, Documents) -> not implemented in this version
 6. VPC
     * Isolated network for secure communication
 7. CloudWatch
@@ -63,14 +63,16 @@ The Chatbot Service is a Spring Boot application that provides a chatbot interfa
 
 ### Environment variables for local build/start:
 
-| variable                 | value                  |
-|--------------------------|------------------------|
-| CB_PROFILE               | dev                    |
-| CB_AWS_DYNAMODB_ENDPOINT | http://localhost:8000  |
-| CB_AWS_DYNAMODB_REGION   | us-east-1              |
-| CB_AWS_ACCESS_KEY_ID     |                        |
-| CB_AWS_SECRET_ACCESS_KEY |                        |
-| CB_CLAUDE_API_KEY        | dev                    |
+| variable                           | value                 |
+|------------------------------------|-----------------------|
+| CB_PROFILE                         | dev                   |
+| CB_AWS_DYNAMODB_ENDPOINT           | http://localhost:8000 |
+| CB_AWS_DYNAMODB_REGION             | us-east-1             |
+| CB_AWS_DYNAMODB_CHAT_SESSION_TABLE | ChatSession           |
+| CB_AWS_DYNAMODB_CHAT_MESSAGE_TABLE | ChatMessage           |
+| CB_AWS_ACCESS_KEY_ID               | ********              |
+| CB_AWS_SECRET_ACCESS_KEY           | ********              |
+| CB_CLAUDE_API_KEY                  | ********              |
 
 ### Run DynamoDB locally:
 1. Pull the DynamoDB Docker image:

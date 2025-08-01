@@ -2,10 +2,10 @@ package com.tornado.chatbot.repositories;
 
 import java.util.List;
 
-import com.tornado.chatbot.exception.ChatbotException;
 import com.tornado.chatbot.models.ChatMessage;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
@@ -14,19 +14,17 @@ import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryConditional;
 import software.amazon.awssdk.enhanced.dynamodb.model.QueryEnhancedRequest;
-import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
-import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 
 @Slf4j
-@Service
+@Repository
 public class ChatMessageRepository {
-
-    private static String TABLE_NAME = "ChatMessage";
 
     private final DynamoDbTable<ChatMessage> chatMessageTable;
 
-    public ChatMessageRepository(final DynamoDbEnhancedClient enhancedClient) {
-        this.chatMessageTable = enhancedClient.table(TABLE_NAME,
+    public ChatMessageRepository(
+            final DynamoDbEnhancedClient enhancedClient,
+            @Value("${aws.dynamodb.tables.chat-message}") String tableName) {
+        this.chatMessageTable = enhancedClient.table(tableName,
                 TableSchema.fromBean(ChatMessage.class));
     }
 

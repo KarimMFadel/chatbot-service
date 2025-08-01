@@ -4,12 +4,8 @@ import com.tornado.chatbot.api.dto.MessageResponse;
 import com.tornado.chatbot.exception.ChatbotException;
 import com.tornado.chatbot.models.ChatMessage;
 import com.tornado.chatbot.repositories.ChatMessageRepository;
-import software.amazon.awssdk.services.dynamodb.model.DynamoDbException;
-import software.amazon.awssdk.services.dynamodb.model.ResourceNotFoundException;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import static org.mockito.ArgumentMatchers.any;

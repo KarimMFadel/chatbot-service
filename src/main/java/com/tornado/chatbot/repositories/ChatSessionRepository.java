@@ -1,12 +1,9 @@
 package com.tornado.chatbot.repositories;
 
-import java.util.Optional;
-
-import com.tornado.chatbot.exception.ChatbotException;
 import com.tornado.chatbot.models.ChatSession;
-import com.tornado.chatbot.utils.TitleGenerator;
 
-import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Repository;
 
 import lombok.extern.slf4j.Slf4j;
 import software.amazon.awssdk.enhanced.dynamodb.DynamoDbEnhancedClient;
@@ -14,15 +11,15 @@ import software.amazon.awssdk.enhanced.dynamodb.DynamoDbTable;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 
 @Slf4j
-@Service
+@Repository
 public class ChatSessionRepository {
-
-    private static String TABLE_NAME = "ChatSession";
 
     private final DynamoDbTable<ChatSession> chatSessionTable;
 
-    public ChatSessionRepository(final DynamoDbEnhancedClient enhancedClient) {
-        this.chatSessionTable = enhancedClient.table(TABLE_NAME,
+    public ChatSessionRepository(
+            final DynamoDbEnhancedClient enhancedClient,
+            @Value("${aws.dynamodb.tables.chat-session}") String tableName) {
+        this.chatSessionTable = enhancedClient.table(tableName,
                 TableSchema.fromBean(ChatSession.class));
     }
 

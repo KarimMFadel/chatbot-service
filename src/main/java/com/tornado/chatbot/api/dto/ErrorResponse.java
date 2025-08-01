@@ -1,6 +1,5 @@
 package com.tornado.chatbot.api.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data

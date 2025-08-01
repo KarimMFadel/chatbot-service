@@ -10,3 +10,7 @@ spring:
 
 aws:
   region: ${CB_AWS_DYNAMODB_REGION}
+  dynamodb:
+    tables:
+      chat-session: ${CB_AWS_DYNAMODB_CHAT_SESSION_TABLE:ChatSession}
+      chat-message: ${CB_AWS_DYNAMODB_CHAT_MESSAGE_TABLE:ChatMessage}
