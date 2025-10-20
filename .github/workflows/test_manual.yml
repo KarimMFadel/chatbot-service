@@ -27,6 +27,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Use the composite action
+      - name: Common Build Steps
+        id: build
+        uses: ./.github/actions/common-build-steps
+        
       # 0) Validate branch name
       - name: Check branch name should start with 'releases/'
         run: |
