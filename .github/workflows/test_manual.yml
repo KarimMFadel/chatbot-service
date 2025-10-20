@@ -27,6 +27,11 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
+      # 1) Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v4
+
       # Use the composite action
       - name: Common Build Steps
         id: build

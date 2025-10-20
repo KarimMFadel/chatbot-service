@@ -13,9 +13,6 @@ outputs:
 runs:
   using: 'composite'
   steps:
-    # 1) Checkout the code
-    - name: Checkout
-      uses: actions/checkout@v4
 
     # 2) Set up JDK 21
     - name: Set up JDK 21
