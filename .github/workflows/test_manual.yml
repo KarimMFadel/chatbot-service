@@ -30,6 +30,7 @@ jobs:
       # 1) Checkout the code
       - name: Checkout
         uses: actions/checkout@v4
+        
 
       # 2) Validate release branch and version
       # 2.1) Validate branch name
