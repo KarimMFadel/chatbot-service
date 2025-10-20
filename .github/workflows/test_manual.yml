@@ -27,16 +27,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-
-      # 1) Checkout the code
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      # Use the composite action
-      - name: Common Build Steps
-        id: build
-        uses: ./.github/actions/common-build-steps
-        
       # 0) Validate branch name
       - name: Check branch name should start with 'releases/'
         run: |
@@ -47,7 +37,28 @@ jobs:
             exit 1
           fi
           echo "✅ Valid release branch: ${{ github.ref_name }}"
-          
+
+      # Validate project version doesn't contain SNAPSHOT
+      - name: Validate no SNAPSHOT version
+        run: |
+          PROJECT_VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "Project version: $PROJECT_VERSION"
+          if [[ "$PROJECT_VERSION" == *"SNAPSHOT"* ]]; then
+            echo "❌ Error: Project version must not contain SNAPSHOT"
+            echo "Current version: $PROJECT_VERSION"
+            exit 1
+          fi
+          echo "✅ Valid release version: $PROJECT_VERSION"  
+
+      # 1) Checkout the code
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # Use the composite action
+      - name: Common Build Steps
+        id: build
+        uses: ./.github/actions/common-build-steps
+        
       # Runs a single command using the runners shell
       - name: Send greeting
         run: |
