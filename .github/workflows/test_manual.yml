@@ -27,8 +27,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: |
-          echo "Hello ${{ inputs.name }}"
+      # 0) Validate branch name
+      - name: Check branch name
+        run: |
+          echo "Current branch: ${{ github.ref_name }}"
+          if [[ ! "${{ github.ref_name }}" =~ ^release/ ]]; then
+            echo "❌ Error: This workflow must run on a branch with prefix 'release/'"
+            echo "Current branch: ${{ github.ref_name }}"
+            exit 1
+          fi
           echo "✅ Valid release branch: ${{ github.ref_name }}"
+          
+      # Runs a single command using the runners shell
+      - name: Send greeting
+        run: |
+            echo "Hello ${{ inputs.name }}"
+            echo "✅ Valid release branch: ${{ github.ref_name }}"
